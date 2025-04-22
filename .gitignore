@@ -1,0 +1,29 @@
+flask-backend/.env
+flask-backend/env/
+flask-backend/__pycache__
+flask-backend/app/__pycache__
+
+
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+sakila-frontend/node_modules
+sakila-frontend/.pnp
+.pnp.js
+
+# testing
+sakila-frontend/coverage
+
+# production
+sakila-frontend/build
+
+# misc
+sakila-frontend/.DS_Store
+sakila-frontend/.env.local
+sakila-frontend/.env.development.local
+sakila-frontend/.env.test.local
+sakila-frontend/.env.production.local
+
+sakila-frontend/npm-debug.log*
+sakila-frontend/yarn-debug.log*
+sakila-frontend/yarn-error.log*

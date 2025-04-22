@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sakila Movie Rental</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        nav {
+            background-color: #333;
+            padding: 10px;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 18px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        input {
+            width: 80%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        button {
+            padding: 5px 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .movie-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+        }
+
+        .movie-table th,
+        .movie-table td {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            text-align: center;
+        }
+
+        .movie-table th {
+            background: #007bff;
+            color: white;
+        }
+
+        .rent-btn {
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .rent-btn:hover {
+            background: #218838;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Bienvenido a Sakila Movie Rental</h1>
+
+    <nav>
+        <a href="#" onclick="showSection('home')">Inicio</a>
+        <a href="#" onclick="showSection('movies')">Películas</a>
+        <a href="#" onclick="showSection('rentals')">Mis Rentas</a>
+    </nav>
+
+    <div id="home" class="container">
+        <div class="selector">
+            <label for="storeSelect">Tienda:</label>
+            <select id="storeSelect"></select>
+
+            <label for="staffSelect">Empleado:</label>
+            <select id="staffSelect"></select>
+        </div>
+
+    </div>
+
+    <div id="movies" class="container" style="display: none; text-align: center;">
+        <h2>Películas Disponibles</h2>
+
+        <input type="text" id="searchBox" placeholder="Buscar película..." oninput="filterMovies()" class="search-input">
+
+        <table class="movie-table">
+            <thead>
+                <tr>
+                    <th>Título</th>
+                    <th>Año</th>
+                    <th>Duración</th>
+                    <th>Precio ($)</th>
+                    <th>Clasificación</th>
+                    <th>Copias en la tienda</th>
+                    <th>Acción</th>
+                </tr>
+            </thead>
+            <tbody id="movieList"></tbody> <!-- Este ID debe coincidir con `script.js` -->
+        </table>
+
+    </div>
+
+
+    <div id="rentals" class="container" style="display: none; text-align: center;">
+        <h2>Mis Rentas</h2>
+        <button onclick="getRentals('all')">Ver Todas</button>
+        <button onclick="getRentals('recent')">Ver Recientes</button>
+
+        <table class="rental-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Empleado</th>
+                    <th>Titulo Película</th>
+                    <th>Fecha de Renta</th>
+                    <th>Estado</th>
+                    <th>Acción</th>
+                </tr>
+            </thead>
+            <tbody id="rentalList"></tbody>
+        </table>
+    </div>
+
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+
+</html>
